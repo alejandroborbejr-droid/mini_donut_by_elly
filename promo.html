@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Donut by Elly</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffe4ec;
+      color: #333;
+    }
+    header {
+      background: #e75480;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    /* ✅ Logo smaller & centered */
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 10px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header h1 {
+      margin: 10px 0 0;
+      font-size: 2em;
+    }
+
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      color: #e75480;
+      margin-bottom: 20px;
+    }
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* 🍩 Main Donut Cards */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      width: 250px;
+      height: 320px;
+     box-shadow: 0 0 20px rgba(231, 84, 128, 0.6); 
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(231, 84, 128, 0.6); 
+    }
+    .card img {
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin: 0 auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .card img:hover {
+      transform: scale(1.1);
+    }
+    .price {
+      color: #e75480;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    /* 🍬 Topping Cards (smaller) */
+    .topping-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      width: 150px;
+      height: 200px;
+      box-shadow: 0 0 20px rgba(231, 84, 128, 0.6); 
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .topping-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(231, 84, 128, 0.6); 
+    }
+    .topping-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin: 0 auto 10px;
+    }
+
+    /* 📦 Package Cards */
+    .package-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      width: 220px;
+      height: 280px;
+      box-shadow: 0 0 20px rgba(231, 84, 128, 0.6); 
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .package-card:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 0 20px rgba(231, 84, 128, 0.6); /* ✨ Pink glow */
+    }
+    .package-card img {
+      width: 160px;
+      height: 160px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+    .package-card img:hover {
+      transform: scale(1.1);
+    }
+    .package-price {
+      color: #e75480;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin-top: 20px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-messenger {
+      background: #0084ff;
+    }
+    .btn-messenger:hover {
+      background: #006fd6;
+    }
+    .btn-whatsapp {
+      background: #25D366;
+    }
+    .btn-whatsapp:hover {
+      background: #1ebd5a;
+    }
+
+    footer {
+      background: #e75480;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+	
+	/* 🍩 Cute Donut-Style Video Frame */
+.video-frame {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 15px;
+  border: 10px dotted #e75480; /* donut sprinkle style */
+  border-radius: 25px;
+  background: #fff0f6;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.video-frame::before {
+  content: "🍩";
+  font-size: 2rem;
+  position: absolute;
+  top: -15px;
+  left: -15px;
+}
+
+.video-frame::after {
+  content: "🍩";
+  font-size: 2rem;
+  position: absolute;
+  bottom: -15px;
+  right: -15px;
+}
+
+.video-frame video {
+  border-radius: 16px;
+  width: 100%;
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+
+ <header>
+  <img src="logo2.png" alt="Mini Donut by Elly Logo" class="logo">
+  <h1>🍩 Mini Donut by Elly 🍩</h1>
+  <p>Delicious • Sweet • Affordable</p>
+</header>
+
+  <!-- Flavors -->
+  <section class="section">
+    <h2>Our Flavors</h2>
+    <div class="menu">
+      <div class="card">
+        <img src="chocolate.webp" alt="Chocolate Donut">
+        <h3>Chocolate</h3>
+        <p class="price">₱7 each</p>
+      </div>
+      <div class="card">
+        <img src="white.webp" alt="White Chocolate Donut">
+        <h3>White Chocolate</h3>
+        <p class="price">₱7 each</p>
+      </div>
+      <div class="card">
+        <img src="strawberry.webp" alt="Strawberry Donut">
+        <h3>Strawberry</h3>
+        <p class="price">₱7 each</p>
+      </div>
+      <div class="card">
+        <img src="premium.jpg" alt="Premium Glazed Donut">
+        <h3>Premium Glazed</h3>
+        <p class="price">₱10 each</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toppings -->
+  <section class="section" style="background: #fff;">
+    <h2>Toppings</h2>
+    <div class="menu">
+      <div class="topping-card">
+        <img src="nips.jpeg" alt="Nips Topping">
+        <h3>Nips</h3>
+      </div>
+      <div class="topping-card">
+        <img src="mallows.webp" alt="Mallows Topping">
+        <h3>Mallows</h3>
+      </div>
+      <div class="topping-card">
+        <img src="sprinkles.png" alt="Sprinkles Topping">
+        <h3>Sprinkles</h3>
+      </div>
+      <div class="topping-card">
+        <img src="oreo.webp" alt="Cookies Topping">
+        <h3>Cookies</h3>
+      </div>
+      <div class="topping-card">
+        <img src="rice.jpg" alt="Rice Crispies Topping">
+        <h3>Rice Crispies</h3>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 📦 Packages -->
+  <section class="section">
+    <h2>📦 Our Packages</h2>
+    <div class="menu">
+      <div class="package-card">
+        <img src="6s.jpg" alt="6 pcs Donuts">
+        <h3>6 pcs</h3>
+        <p class="package-price">₱55</p>
+      </div>
+      <div class="package-card">
+        <img src="12s.jpg" alt="12 pcs Donuts">
+        <h3>12 pcs</h3>
+        <p class="package-price">₱100</p>
+      </div>
+    </div>
+  </section>
+  
+   <!-- 🎥 Commercial Video -->
+<section class="section" style="background:#fff;">
+  <h2>🎥 Watch Our Mini Donut Commercial</h2>
+  <p>See how we make your favorite sweet treats fresh & delicious!</p>
+  <div class="video-frame">
+    <video width="100%" controls autoplay muted loop>
+      <source src="commercial.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
+
+  <!-- Contact / Order -->
+  <section class="section" style="background: #fff;">
+    <h2>Order Now!</h2>
+    <p>📲 Connect with us on Facebook or WhatsApp</p>
+    <div class="buttons">
+      <a href="https://m.me/YourFacebookPageUsername" target="_blank" class="btn btn-messenger">Message on Messenger</a>
+      <a href="https://wa.me/639123456789" target="_blank" class="btn btn-whatsapp">Chat on WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Mini Donut by Elly • Sweet Treats for Everyone</p>
+  </footer>
+
+</body>
+</html>
