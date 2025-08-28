@@ -26,14 +26,6 @@ body {
 .logo { width: 100px; margin: 0 auto 10px; display: block; }
 h2 { text-align: center; color: #d2691e; font-size: 26px; margin-bottom: 20px; 
      background: linear-gradient(90deg, #ff8a65, #ffb74d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-label { font-weight: bold; display: block; margin-top: 15px; color: #5d4037; }
-input, textarea { width: 100%; padding: 12px; margin-top: 8px; border-radius: 15px; border: 2px solid #f8bbd0; outline: none; font-size: 14px; }
-.price-display { font-weight: bold; color: #d84315; margin-top: 8px; }
-.voucher { font-weight: bold; color: green; margin-top: 8px; }
-button { width: 100%; background: linear-gradient(90deg, #ff7043, #ffb74d); color: white; font-size: 18px; font-weight: bold; padding: 14px; border: none; border-radius: 20px; cursor: pointer; margin-top: 25px; transition: 0.3s; }
-button:hover { background: linear-gradient(90deg, #ff5722, #ffa726); transform: scale(1.05); }
-
-.logo { width: 100px; margin: 0 auto 10px; display: block; }
 h3 { text-align: center; color: #d2691e; font-size: 26px; margin-bottom: 20px; 
      background: linear-gradient(90deg, #ff8a65, #ffb74d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 label { font-weight: bold; display: block; margin-top: 15px; color: #5d4037; }
@@ -59,6 +51,20 @@ button:hover { background: linear-gradient(90deg, #ff5722, #ffa726); transform: 
 .modal-content pre { background: #fce4ec; padding: 10px; border-radius: 10px; white-space: pre-wrap; }
 .modal-buttons { display: flex; justify-content: space-between; margin-top: 20px; }
 .modal-buttons button { width: 48%; }
+
+/* Mobile Optimization */
+@media (max-width: 600px) {
+  .order-form {
+    width: 95%;
+    padding: 20px;
+  }
+  h2, h3 {
+    font-size: 20px;
+  }
+  input, textarea, button {
+    font-size: 16px;
+  }
+}
 </style>
 </head>
 <body>
@@ -154,7 +160,6 @@ function setupDropdown(buttonId, containerId) {
     });
   });
 }
-
 setupDropdown('flavor-btn','flavor-options');
 setupDropdown('topping-btn','topping-options');
 
@@ -187,16 +192,21 @@ function reviewOrder() {
 function closeModal() { document.getElementById("reviewModal").style.display="none"; }
 
 function confirmOrder() {
-   let facebookLink = "https://www.facebook.com/messages/t/674474752426071?ref="+encodeURIComponent(window.orderMessage);
-  window.location.href = facebookLink;
+  let pageId = "61579295073796"; // your FB page ID
+  let encodedMsg = encodeURIComponent(window.orderMessage);
+
+  // Deep link for Messenger app
+  let messengerApp = `fb-messenger://share/?link=https://m.me/${pageId}&app_id=${pageId}&message=${encodedMsg}`;
+
+  // Web fallback
+  let messengerWeb = `https://m.me/${pageId}?ref=${encodedMsg}`;
+
+  // Try app first, then fallback
+  window.location.href = messengerApp;
+  setTimeout(() => {
+    window.location.href = messengerWeb;
+  }, 1000);
 }
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
