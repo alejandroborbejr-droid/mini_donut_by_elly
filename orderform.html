@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Donut Order Form</title>
+<style>
+/* Background with donut image */
+body { 
+  font-family: 'Poppins', sans-serif; 
+  padding: 20px; 
+  margin: 0; 
+  background: url('bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Order Form Styling */
+.order-form { 
+  max-width: 550px; 
+  margin: auto; 
+  background: rgba(255,255,255,0.95); 
+  padding: 40px; 
+  border-radius: 25px; 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+}
+.logo { width: 100px; margin: 0 auto 10px; display: block; }
+h2 { text-align: center; color: #d2691e; font-size: 26px; margin-bottom: 20px; 
+     background: linear-gradient(90deg, #ff8a65, #ffb74d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+label { font-weight: bold; display: block; margin-top: 15px; color: #5d4037; }
+input, textarea { width: 100%; padding: 12px; margin-top: 8px; border-radius: 15px; border: 2px solid #f8bbd0; outline: none; font-size: 14px; }
+.price-display { font-weight: bold; color: #d84315; margin-top: 8px; }
+.voucher { font-weight: bold; color: green; margin-top: 8px; }
+button { width: 100%; background: linear-gradient(90deg, #ff7043, #ffb74d); color: white; font-size: 18px; font-weight: bold; padding: 14px; border: none; border-radius: 20px; cursor: pointer; margin-top: 25px; transition: 0.3s; }
+button:hover { background: linear-gradient(90deg, #ff5722, #ffa726); transform: scale(1.05); }
+
+.logo { width: 100px; margin: 0 auto 10px; display: block; }
+h3 { text-align: center; color: #d2691e; font-size: 26px; margin-bottom: 20px; 
+     background: linear-gradient(90deg, #ff8a65, #ffb74d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+label { font-weight: bold; display: block; margin-top: 15px; color: #5d4037; }
+input, textarea { width: 100%; padding: 12px; margin-top: 8px; border-radius: 15px; border: 2px solid #f8bbd0; outline: none; font-size: 14px; }
+.price-display { font-weight: bold; color: #d84315; margin-top: 8px; }
+.voucher { font-weight: bold; color: green; margin-top: 8px; }
+button { width: 100%; background: linear-gradient(90deg, #ff7043, #ffb74d); color: white; font-size: 18px; font-weight: bold; padding: 14px; border: none; border-radius: 20px; cursor: pointer; margin-top: 25px; transition: 0.3s; }
+button:hover { background: linear-gradient(90deg, #ff5722, #ffa726); transform: scale(1.05); }
+
+/* Dropdown */
+.dropdown { position: relative; margin-top: 10px; }
+.dropdown-btn { background: #fff3e0; border: 2px solid #f8bbd0; border-radius: 15px; padding: 12px; width: 100%; text-align: left; cursor: pointer; }
+.dropdown-btn::after { content: "▼"; float: right; font-size: 12px; color: #888; }
+.dropdown-content { display: none; position: absolute; background: #fff; border: 2px solid #f8bbd0; border-radius: 15px; margin-top: 5px; width: 100%; max-height: 200px; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 10; }
+.dropdown-content label { display: block; padding: 8px 12px; cursor: pointer; }
+.dropdown-content input { margin-right: 8px; }
+.dropdown-content label:hover { background: #ffe0b2; }
+
+/* Modal */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-content { background: #fff; margin: 10% auto; padding: 20px; border-radius: 15px; width: 90%; max-width: 500px; text-align: left; }
+.modal-content h3 { margin-bottom: 15px; }
+.modal-content pre { background: #fce4ec; padding: 10px; border-radius: 10px; white-space: pre-wrap; }
+.modal-buttons { display: flex; justify-content: space-between; margin-top: 20px; }
+.modal-buttons button { width: 48%; }
+</style>
+</head>
+<body>
+
+<div class="order-form">
+  <img src="title.jpg" class="logo">
+  <h2>🍩 Mini Donut by ELLY 🍩 </h2>
+  <h3>🍩 Order Form 🍩</h3>
+
+  <form onsubmit="reviewOrder(); return false;">
+    <label>Full Name</label>
+    <input type="text" id="name" required>
+    <label>Contact Number</label>
+    <input type="tel" id="contact" required>
+    <label>Delivery Address</label>
+    <textarea id="address" rows="2" required></textarea>
+
+    <label>Select Flavors</label>
+    <div class="dropdown">
+      <div class="dropdown-btn" id="flavor-btn" onclick="toggleDropdown('flavor-options')">Choose flavors</div>
+      <div class="dropdown-content" id="flavor-options">
+        <label><input type="checkbox" value="Classic"> Classic</label>
+        <label><input type="checkbox" value="Chocolate"> Chocolate</label>
+        <label><input type="checkbox" value="Strawberry"> Strawberry</label>
+        <label><input type="checkbox" value="Ube"> Ube</label>
+      </div>
+    </div>
+
+    <label>Select Toppings</label>
+    <div class="dropdown">
+      <div class="dropdown-btn" id="topping-btn" onclick="toggleDropdown('topping-options')">Choose toppings</div>
+      <div class="dropdown-content" id="topping-options">
+        <label><input type="checkbox" value="Sprinkles"> Sprinkles</label>
+        <label><input type="checkbox" value="Chocolate Chips"> Chocolate Chips</label>
+        <label><input type="checkbox" value="Powdered Sugar"> Powdered Sugar</label>
+        <label><input type="checkbox" value="Glaze"> Glaze</label>
+      </div>
+    </div>
+
+    <label>Order Quantity</label>
+    <div>
+      <label>6 pcs (₱55 each):</label>
+      <input type="number" id="qty6" min="0" value="0" onchange="updatePrice()">
+    </div>
+    <div>
+      <label>12 pcs (₱100 each):</label>
+      <input type="number" id="qty12" min="0" value="0" onchange="updatePrice()">
+    </div>
+
+    <div id="price" class="price-display"></div>
+    <div id="voucher" class="voucher"></div>
+
+    <label>Special Instructions</label>
+    <textarea id="notes" rows="3"></textarea>
+
+    <button type="submit">📩 Review Order</button>
+  </form>
+</div>
+
+<!-- Review Modal -->
+<div id="reviewModal" class="modal">
+  <div class="modal-content">
+    <h3>📝 Review Your Order</h3>
+    <pre id="orderSummary"></pre>
+    <div class="modal-buttons">
+      <button onclick="closeModal()">Edit</button>
+      <button onclick="confirmOrder()">Confirm & Send</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleDropdown(id) {
+  const dropdown = document.getElementById(id);
+  const isOpen = dropdown.style.display === "block";
+  document.querySelectorAll('.dropdown-content').forEach(el => el.style.display = "none");
+  if (!isOpen) dropdown.style.display = "block";
+}
+
+// Close when clicking outside
+window.addEventListener("click", function(event) {
+  if (!event.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-content').forEach(el => el.style.display = "none");
+  }
+});
+
+// Keep dropdown text updated
+function setupDropdown(buttonId, containerId) {
+  document.querySelectorAll(`#${containerId} input`).forEach(input => {
+    input.addEventListener("change", () => {
+      const selected = Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(cb => cb.value);
+      document.getElementById(buttonId).innerText = selected.length > 0 ? selected.join(", ") : `Choose ${buttonId.includes('flavor') ? 'flavors' : 'toppings'}`;
+    });
+  });
+}
+
+setupDropdown('flavor-btn','flavor-options');
+setupDropdown('topping-btn','topping-options');
+
+function updatePrice() {
+  let qty6 = parseInt(document.getElementById("qty6").value)||0;
+  let qty12 = parseInt(document.getElementById("qty12").value)||0;
+  let total = (qty6*55)+(qty12*100);
+  document.getElementById("price").innerText = total>0?`Total: ₱${total}`:"";
+  document.getElementById("voucher").innerText = total>=400?"🎉 FREE DELIVERY!":"";
+}
+
+function reviewOrder() {
+  let name = document.getElementById("name").value;
+  let contact = document.getElementById("contact").value;
+  let address = document.getElementById("address").value;
+  let flavors = Array.from(document.querySelectorAll('#flavor-options input:checked')).map(cb=>cb.value);
+  let toppings = Array.from(document.querySelectorAll('#topping-options input:checked')).map(cb=>cb.value);
+  let qty6 = parseInt(document.getElementById("qty6").value)||0;
+  let qty12 = parseInt(document.getElementById("qty12").value)||0;
+  let notes = document.getElementById("notes").value;
+  let total = (qty6*55)+(qty12*100);
+  let voucherMsg = total>=400?"🎉 FREE DELIVERY applied!":"No free delivery voucher.";
+
+  window.orderMessage = `🍩 Mini Donut Order\n\nFlavors: ${flavors.join(", ")||"None"}\nToppings: ${toppings.join(", ")||"None"}\n\n📦 Quantity:\n- ${qty6} × 6 pcs\n- ${qty12} × 12 pcs\n\n💰 Total: ₱${total}\n${voucherMsg}\n\nNotes: ${notes}\n\n👤 ${name}\n📞 ${contact}\n🏠 ${address}`;
+
+  document.getElementById("orderSummary").innerText = window.orderMessage;
+  document.getElementById("reviewModal").style.display = "block";
+}
+
+function closeModal() { document.getElementById("reviewModal").style.display="none"; }
+
+function confirmOrder() {
+  let messengerLink = "https://m.me/YOUR_PAGE_USERNAME?ref="+encodeURIComponent(window.orderMessage);
+  window.location.href = messengerLink;
+}
+</script>
+</body>
+</html>
