@@ -97,14 +97,13 @@ button:hover { background: linear-gradient(90deg, #ff5722, #ffa726); transform: 
     <label>Delivery Address</label>
     <textarea id="address" rows="2" required></textarea>
 
-    <label>Select Flavors</label>
+    <label>Select Glaze Flavors</label>
     <div class="dropdown">
       <div class="dropdown-btn" id="flavor-btn" onclick="toggleDropdown('flavor-options')">Choose flavors</div>
       <div class="dropdown-content" id="flavor-options">
-        <label><input type="checkbox" value="Classic"> Classic</label>
-        <label><input type="checkbox" value="Chocolate"> Chocolate</label>
+        <label><input type="checkbox" value="Classic"> Chocolate</label>
+        <label><input type="checkbox" value="Chocolate"> White Chocolate</label>
         <label><input type="checkbox" value="Strawberry"> Strawberry</label>
-        <label><input type="checkbox" value="Ube"> Ube</label>
       </div>
     </div>
 
@@ -112,9 +111,14 @@ button:hover { background: linear-gradient(90deg, #ff5722, #ffa726); transform: 
     <div class="dropdown">
       <div class="dropdown-btn" id="topping-btn" onclick="toggleDropdown('topping-options')">Choose toppings</div>
       <div class="dropdown-content" id="topping-options">
-        <label><input type="checkbox" value="Sprinkles"> Sprinkles</label>
-        <label><input type="checkbox" value="Chocolate Chips"> Chocolate Chips</label>
-        <label><input type="checkbox" value="Powdered Sugar"> Powdered Sugar</label>
+        <label><input type="checkbox" value="Rainbow Sprinkles"> Rainbow Sprinkles</label>
+        <label><input type="checkbox" value="Chocolate Sprinkles"> Chocolate Sprinkles</label>
+        <label><input type="checkbox" value="White Sprinkles"> White Sprinkles</label>
+        <label><input type="checkbox" value="Blue Sprinkles"> Blue Sprinkles</label>
+        <label><input type="checkbox" value="Crushed Oreo"> Crushed Oreo</label>
+        <label><input type="checkbox" value="Rice Crispies"> Rice Crispies</label>
+        <label><input type="checkbox" value="Mini Mallows"> Mini Mallows</label>
+        <label><input type="checkbox" value="Nips"> Nips</label>
         <label><input type="checkbox" value="Glaze"> Glaze</label>
       </div>
     </div>
@@ -224,3 +228,4 @@ function confirmOrder() {
 </script>
 </body>
 </html>
+
